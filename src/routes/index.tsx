@@ -104,7 +104,7 @@ function Index() {
                   {r.estados.map((e) => (
                     <a key={e.uf} href={e.url} target="_blank" rel="noopener noreferrer"
                       className="group flex flex-col items-center rounded-xl border bg-card p-4 text-center transition hover:border-primary hover:shadow-md">
-                      <img src={`https://flagcdn.com/w160/br-${e.uf.toLowerCase()}.png`} alt={`Bandeira de ${e.nome}`} loading="lazy"
+                      <img src={`https://raw.githubusercontent.com/bgeneto/bandeiras-br/master/imagens/${e.uf}.png`} alt={`Bandeira de ${e.nome}`} loading="lazy"
                         className="h-16 w-24 rounded object-cover shadow-sm" />
                       <span className="mt-3 font-medium">{e.nome} ({e.uf})</span>
                       <span className="mt-1 text-sm text-primary underline underline-offset-2 group-hover:no-underline">Consultar inscrição</span>
