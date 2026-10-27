@@ -15,7 +15,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-type UF = { uf: string; nome: string; url: string };
+type UF = { uf: string; nome: string; url: string; certificado?: boolean };
 const REGIOES: { nome: string; estados: UF[] }[] = [
   { nome: "Região Sul", estados: [
     { uf: "PR", nome: "Paraná", url: "https://www.fazenda.pr.gov.br/Servicos/Consultar-cadastro-ICMS" },
@@ -23,8 +23,8 @@ const REGIOES: { nome: string; estados: UF[] }[] = [
     { uf: "SC", nome: "Santa Catarina", url: "https://sat.sef.sc.gov.br/tax.NET/tax.net.cadastro/conssc_sitcad.aspx" },
   ]},
   { nome: "Região Sudeste", estados: [
-    { uf: "ES", nome: "Espírito Santo", url: "https://dfe-portal.svrs.rs.gov.br/Nfe/Ccc" },
-    { uf: "MG", nome: "Minas Gerais", url: "https://dfe-portal.svrs.rs.gov.br/Nfe/Ccc" },
+    { uf: "ES", nome: "Espírito Santo", url: "https://dfe-portal.svrs.rs.gov.br/Nfe/Ccc", certificado: true },
+    { uf: "MG", nome: "Minas Gerais", url: "https://dfe-portal.svrs.rs.gov.br/Nfe/Ccc", certificado: true },
     { uf: "RJ", nome: "Rio de Janeiro", url: "https://sucief-sincad-web.fazenda.rj.gov.br/sincad-web/index.jsf" },
     { uf: "SP", nome: "São Paulo", url: "http://www.cadesp.fazenda.sp.gov.br/(S(uhpce1gv3crxbpvnxm4dfeuo))/Pages/Cadastro/Consultas/ConsultaPublica/ConsultaPublica.aspx" },
   ]},
@@ -40,8 +40,8 @@ const REGIOES: { nome: string; estados: UF[] }[] = [
     { uf: "CE", nome: "Ceará", url: "http://internet-consultapublica.apps.sefaz.ce.gov.br/sintegra/preparar-consultar" },
     { uf: "MA", nome: "Maranhão", url: "https://sistemas1.sefaz.ma.gov.br/sintegra/jsp/consultaSintegra/consultaSintegraFiltro.jsf" },
     { uf: "PB", nome: "Paraíba", url: "https://www4.sefaz.pb.gov.br/sintegra/SINf_ConsultaSintegra.jsp" },
-    { uf: "PE", nome: "Pernambuco", url: "https://dfe-portal.svrs.rs.gov.br/Nfe/Ccc" },
-    { uf: "PI", nome: "Piauí", url: "https://dfe-portal.svrs.rs.gov.br/Nfe/Ccc" },
+    { uf: "PE", nome: "Pernambuco", url: "https://dfe-portal.svrs.rs.gov.br/Nfe/Ccc", certificado: true },
+    { uf: "PI", nome: "Piauí", url: "https://dfe-portal.svrs.rs.gov.br/Nfe/Ccc", certificado: true },
     { uf: "RN", nome: "Rio Grande do Norte", url: "https://uvt.sefaz.rn.gov.br/#/services/consultaContribuinte" },
     { uf: "SE", nome: "Sergipe", url: "https://security.sefaz.se.gov.br/SIC/sintegra/index.jsp" },
   ]},
@@ -89,7 +89,7 @@ function Index() {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <h2 className="text-2xl font-semibold">Consulta de Inscrição Estadual</h2>
-              <p className="mt-1 text-muted-foreground">Selecione o estado para abrir a consulta oficial.</p>
+              <p className="mt-1 text-muted-foreground">Selecione o estado para abrir a consulta oficial. Estados marcados com <span className="font-medium text-foreground">Necessário Certificado</span> exigem certificado digital para acessar a consulta.</p>
             </div>
             <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar estado ou sigla..." aria-label="Buscar estado"
               className="w-full sm:w-72 rounded-lg border border-input bg-background px-4 py-2 outline-none focus:ring-2 focus:ring-ring" />
@@ -107,6 +107,11 @@ function Index() {
                       <img src={`https://raw.githubusercontent.com/bgeneto/bandeiras-br/master/imagens/${e.uf}.png`} alt={`Bandeira de ${e.nome}`} loading="lazy"
                         className="h-16 w-24 rounded object-cover shadow-sm" />
                       <span className="mt-3 font-medium">{e.nome} ({e.uf})</span>
+                      {e.certificado && (
+                        <span className="mt-2 rounded-full border border-destructive/30 bg-destructive/10 px-2 py-0.5 text-xs font-semibold text-destructive">
+                          Necessário Certificado
+                        </span>
+                      )}
                       <span className="mt-1 text-sm text-primary underline underline-offset-2 group-hover:no-underline">Consultar inscrição</span>
                     </a>
                   ))}
