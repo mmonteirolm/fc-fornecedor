@@ -161,7 +161,7 @@ function Index() {
           <div className="mt-10 space-y-10">
             {filtradas.length === 0 && <p className="text-muted-foreground">Nenhum estado encontrado.</p>}
             {filtradas.map((r) => {
-              const style = REGION_STYLE[r.nome];
+              const style = REGION_STYLE[r.nome] ?? { dot: "bg-primary", token: "primary", hover: "" };
               return (
                 <div key={r.nome}>
                   <div className="mb-5 flex items-center gap-3">
