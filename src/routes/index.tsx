@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
+import { GuiaCadastro } from "@/components/GuiaCadastro";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -71,9 +72,12 @@ function Index() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <div className="mx-auto max-w-6xl px-4 py-12 space-y-14">
-        <header>
-          <p className="text-sm font-semibold uppercase tracking-widest text-primary">Consulta de fornecedores</p>
-          <h1 className="mt-2 text-4xl font-bold tracking-tight">Simples Nacional e Inscrição Estadual</h1>
+        <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-widest text-primary">Consulta de fornecedores</p>
+            <h1 className="mt-2 text-4xl font-bold tracking-tight">Simples Nacional e Inscrição Estadual</h1>
+          </div>
+          <GuiaCadastro />
         </header>
 
         <section className="rounded-2xl border bg-card p-8 shadow-sm">
