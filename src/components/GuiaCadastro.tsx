@@ -19,7 +19,7 @@ export function GuiaCadastro() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <button className="inline-flex items-center gap-2 rounded-lg border border-primary px-5 py-2.5 font-medium text-primary hover:bg-primary hover:text-primary-foreground transition">
+        <button className="inline-flex shrink-0 items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-gold-foreground shadow-md transition hover:bg-gold/90">
           📋 Guia de Cadastro de Fornecedores
         </button>
       </SheetTrigger>
