@@ -103,6 +103,7 @@ function Index() {
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                   {r.estados.map((e) => (
                     <a key={e.uf} href={e.url} target="_blank" rel="noopener noreferrer"
+                      title={`Consultar inscrição estadual de ${e.nome}`}
                       className="group flex flex-col items-center rounded-xl border bg-card p-4 text-center transition hover:border-primary hover:shadow-md">
                       <img src={`https://raw.githubusercontent.com/bgeneto/bandeiras-br/master/imagens/${e.uf}.png`} alt={`Bandeira de ${e.nome}`} loading="lazy"
                         className="h-16 w-24 rounded object-cover shadow-sm" />
@@ -112,7 +113,6 @@ function Index() {
                           Necessário Certificado
                         </span>
                       )}
-                      <span className="mt-1 text-sm text-primary underline underline-offset-2 group-hover:no-underline">Consultar inscrição</span>
                     </a>
                   ))}
                 </div>
