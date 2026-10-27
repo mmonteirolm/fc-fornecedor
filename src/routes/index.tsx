@@ -57,6 +57,34 @@ const REGIOES: { nome: string; estados: UF[] }[] = [
   ]},
 ];
 
+const REGION_STYLE: Record<string, { dot: string; token: string; hover: string }> = {
+  "Região Sul": {
+    dot: "bg-region-sul",
+    token: "sul",
+    hover: "hover:border-region-sul/50 hover:shadow-[0_14px_30px_-14px_var(--region-sul)]",
+  },
+  "Região Sudeste": {
+    dot: "bg-region-sudeste",
+    token: "sudeste",
+    hover: "hover:border-region-sudeste/50 hover:shadow-[0_14px_30px_-14px_var(--region-sudeste)]",
+  },
+  "Região Centro-Oeste": {
+    dot: "bg-region-centro-oeste",
+    token: "centro-oeste",
+    hover: "hover:border-region-centro-oeste/50 hover:shadow-[0_14px_30px_-14px_var(--region-centro-oeste)]",
+  },
+  "Região Nordeste": {
+    dot: "bg-region-nordeste",
+    token: "nordeste",
+    hover: "hover:border-region-nordeste/50 hover:shadow-[0_14px_30px_-14px_var(--region-nordeste)]",
+  },
+  "Região Norte": {
+    dot: "bg-region-norte",
+    token: "norte",
+    hover: "hover:border-region-norte/50 hover:shadow-[0_14px_30px_-14px_var(--region-norte)]",
+  },
+};
+
 const norm = (s: string) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
 function Index() {
@@ -70,61 +98,110 @@ function Index() {
   }, [q]);
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
-      <div className="mx-auto max-w-6xl px-4 py-12 space-y-14">
-        <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary">Consulta de fornecedores</p>
-            <h1 className="mt-2 text-4xl font-bold tracking-tight">Simples Nacional e Inscrição Estadual</h1>
+    <div className="min-h-screen bg-background font-sans text-foreground">
+      <header className="hero-band text-primary-foreground">
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:py-16">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <span className="inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] ring-1 ring-primary-foreground/20">
+                Consulta de fornecedores
+              </span>
+              <h1 className="mt-5 font-display text-4xl leading-tight sm:text-5xl">
+                Simples Nacional <span className="text-gold">&</span> Inscrição Estadual
+              </h1>
+              <p className="mt-3 max-w-xl text-sm leading-relaxed text-primary-foreground/75">
+                Consulte optantes do Simples Nacional e a inscrição estadual de fornecedores nos portais oficiais da Receita Federal e das Secretarias da Fazenda.
+              </p>
+            </div>
+            <GuiaCadastro />
           </div>
-          <GuiaCadastro />
-        </header>
+        </div>
+      </header>
 
-        <section className="rounded-2xl border bg-card p-8 shadow-sm">
-          <h2 className="text-2xl font-semibold">Consulta ao Simples Nacional</h2>
-          <p className="mt-2 text-muted-foreground">Verifique no site da Receita Federal se o fornecedor é optante pelo Simples Nacional.</p>
-          <a href="https://www8.receita.fazenda.gov.br/SIMPLESNACIONAL/aplicacoes.aspx?id=22" target="_blank" rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground hover:bg-primary/90">
-            Acessar consulta ao Simples Nacional →
-          </a>
+      <main className="mx-auto max-w-6xl space-y-12 px-4 py-12">
+        <section className="relative overflow-hidden rounded-2xl border bg-card p-8 shadow-card">
+          <div aria-hidden className="absolute inset-y-0 left-0 w-1.5 bg-gold" />
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <div className="max-w-xl">
+              <h2 className="font-display text-2xl">Consulta ao Simples Nacional</h2>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Verifique no site da Receita Federal se o fornecedor é optante pelo Simples Nacional.
+              </p>
+            </div>
+            <a href="https://www8.receita.fazenda.gov.br/SIMPLESNACIONAL/aplicacoes.aspx?id=22" target="_blank" rel="noopener noreferrer"
+              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-md transition hover:bg-primary/90">
+              Acessar consulta
+              <svg aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+              </svg>
+            </a>
+          </div>
         </section>
 
         <section>
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <h2 className="text-2xl font-semibold">Consulta de Inscrição Estadual</h2>
-              <p className="mt-1 text-muted-foreground">Selecione o estado para abrir a consulta oficial. Estados marcados com <span className="font-medium text-foreground">Necessário Certificado</span> exigem certificado digital para acessar a consulta.</p>
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+            <div className="max-w-xl">
+              <h2 className="font-display text-2xl">Consulta de Inscrição Estadual</h2>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Selecione o estado para abrir a consulta oficial. Estados marcados com{" "}
+                <span className="whitespace-nowrap rounded-full border border-destructive/30 bg-destructive/10 px-2 py-0.5 text-xs font-semibold text-destructive">Necessário Certificado</span>{" "}
+                exigem certificado digital para acessar a consulta.
+              </p>
             </div>
-            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar estado ou sigla..." aria-label="Buscar estado"
-              className="w-full sm:w-72 rounded-lg border border-input bg-background px-4 py-2 outline-none focus:ring-2 focus:ring-ring" />
+            <div className="relative w-full sm:w-80">
+              <svg aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+                className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground">
+                <circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" />
+              </svg>
+              <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar estado ou sigla..." aria-label="Buscar estado"
+                className="w-full rounded-full border border-input bg-card py-2.5 pl-10 pr-4 text-sm shadow-sm outline-none transition focus:border-ring focus:ring-2 focus:ring-ring/30" />
+            </div>
           </div>
 
-          <div className="mt-8 space-y-10">
+          <div className="mt-10 space-y-10">
             {filtradas.length === 0 && <p className="text-muted-foreground">Nenhum estado encontrado.</p>}
-            {filtradas.map((r) => (
-              <div key={r.nome}>
-                <h3 className="mb-4 border-b pb-2 text-lg font-semibold">{r.nome}</h3>
-                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-                  {r.estados.map((e) => (
-                    <a key={e.uf} href={e.url} target="_blank" rel="noopener noreferrer"
-                      title={`Consultar inscrição estadual de ${e.nome}`}
-                      className="group flex flex-col items-center rounded-xl border bg-card p-4 text-center transition hover:border-primary hover:shadow-md">
-                      <img src={`https://raw.githubusercontent.com/bgeneto/bandeiras-br/master/imagens/${e.uf}.png`} alt={`Bandeira de ${e.nome}`} loading="lazy"
-                        className="h-16 w-24 rounded object-cover shadow-sm" />
-                      <span className="mt-3 font-medium">{e.nome} ({e.uf})</span>
-                      {e.certificado && (
-                        <span className="mt-2 rounded-full border border-destructive/30 bg-destructive/10 px-2 py-0.5 text-xs font-semibold text-destructive">
-                          Necessário Certificado
-                        </span>
-                      )}
-                    </a>
-                  ))}
+            {filtradas.map((r) => {
+              const style = REGION_STYLE[r.nome];
+              return (
+                <div key={r.nome}>
+                  <div className="mb-5 flex items-center gap-3">
+                    <span aria-hidden className={`h-2.5 w-2.5 rounded-full ${style.dot}`} />
+                    <h3 className="font-display text-xl">{r.nome}</h3>
+                    <span className="rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
+                      {r.estados.length} {r.estados.length === 1 ? "estado" : "estados"}
+                    </span>
+                    <div aria-hidden className="h-px flex-1"
+                      style={{ background: `linear-gradient(to right, var(--region-${style.token}), transparent)` }} />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                    {r.estados.map((e) => (
+                      <a key={e.uf} href={e.url} target="_blank" rel="noopener noreferrer"
+                        title={`Consultar inscrição estadual de ${e.nome}`}
+                        className={`group flex flex-col items-center rounded-xl border bg-card p-4 text-center shadow-card transition duration-200 hover:-translate-y-1 ${style.hover}`}>
+                        <img src={`https://raw.githubusercontent.com/bgeneto/bandeiras-br/master/imagens/${e.uf}.png`} alt={`Bandeira de ${e.nome}`} loading="lazy"
+                          className="h-16 w-24 rounded-md object-cover shadow-sm ring-1 ring-border" />
+                        <span className="mt-3 text-sm font-semibold leading-tight">{e.nome}</span>
+                        <span className="mt-1 text-xs font-semibold tracking-[0.2em] text-muted-foreground">{e.uf}</span>
+                        {e.certificado && (
+                          <span className="mt-2 rounded-full border border-destructive/30 bg-destructive/10 px-2 py-0.5 text-[11px] font-semibold text-destructive">
+                            Necessário Certificado
+                          </span>
+                        )}
+                      </a>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
-      </div>
-    </main>
+      </main>
+
+      <footer className="border-t bg-muted/50 py-6">
+        <p className="mx-auto max-w-6xl px-4 text-center text-xs text-muted-foreground">
+          Os links direcionam aos portais oficiais da Receita Federal e das Secretarias da Fazenda estaduais.
+        </p>
+      </footer>
+    </div>
   );
 }
