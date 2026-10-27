@@ -1,5 +1,19 @@
+import type { ReactNode } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetDescription } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
+
+function Item({ children, variante = "cheio", className = "" }: { children: ReactNode; variante?: "cheio" | "secundario"; className?: string }) {
+  return (
+    <li className={`flex items-start gap-2.5 ${className}`}>
+      <span aria-hidden className={
+        variante === "cheio"
+          ? "mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-primary"
+          : "mt-[0.55em] h-2 w-2 shrink-0 rounded-full border-2 border-primary/50"
+      } />
+      <span>{children}</span>
+    </li>
+  );
+}
 
 export function GuiaCadastro() {
   return (
@@ -19,12 +33,16 @@ export function GuiaCadastro() {
           <section className="space-y-2">
             <h3 className="text-base font-bold">Fornecedores COM Inscrição Estadual</h3>
             <p>Contribuinte: <strong>SIM</strong></p>
-            <p>Consultar se a empresa é optante pelo Simples Nacional.</p>
+            <p className="w-fit rounded-md bg-primary/10 px-2 py-1 font-semibold text-foreground ring-1 ring-primary/15">
+              Consultar se a empresa é optante pelo Simples Nacional.
+            </p>
             <p>Aba Fiscais - Grupo Tributário: <strong>001</strong></p>
-            <p className="pt-2">Se for optante:</p>
-            <p className="pl-4">Aba Outros - Optante pelo Simples Nacional: <strong>Sim</strong></p>
-            <p className="pt-2">Se <strong>não</strong> for optante:</p>
-            <p className="pl-4">Aba Outros - Optante pelo Simples Nacional: <strong>Não</strong></p>
+            <ul className="space-y-1.5 pt-2">
+              <Item>Se for optante:</Item>
+              <Item variante="secundario" className="pl-5">Aba Outros - Optante pelo Simples Nacional: <strong>Sim</strong></Item>
+              <Item>Se <strong>não</strong> for optante:</Item>
+              <Item variante="secundario" className="pl-5">Aba Outros - Optante pelo Simples Nacional: <strong>Não</strong></Item>
+            </ul>
           </section>
 
           <section className="space-y-2">
@@ -36,7 +54,9 @@ export function GuiaCadastro() {
           <Separator />
 
           <section className="space-y-3">
-            <p><strong>Aba outros: Optante pelo Simples Nacional: CONSULTAR</strong></p>
+            <ul>
+              <Item><strong>Aba outros: Optante pelo Simples Nacional: CONSULTAR</strong></Item>
+            </ul>
             <p className="text-muted-foreground">Para a consulta da Inscrição Estadual, é necessária a utilização do Certificado Digital em alguns estados.</p>
           </section>
         </div>
