@@ -25,13 +25,13 @@ export function GuiaCadastro() {
       </SheetTrigger>
       <SheetContent className="w-full overflow-y-auto sm:max-w-lg">
         <SheetHeader>
-          <SheetTitle>Guia de Cadastro de Fornecedores</SheetTitle>
+          <SheetTitle className="font-display text-xl font-bold tracking-tight">Guia de Cadastro de Fornecedores</SheetTitle>
           <SheetDescription>Regras para preencher o cadastro conforme a inscrição estadual.</SheetDescription>
         </SheetHeader>
 
         <div className="mt-6 space-y-6 px-4 pb-6 text-sm leading-relaxed">
           <section className="space-y-2">
-            <h3 className="text-base font-bold">Fornecedores COM Inscrição Estadual</h3>
+            <h3 className="font-display text-lg font-bold tracking-tight">Fornecedores COM Inscrição Estadual</h3>
             <p>Contribuinte: <strong>SIM</strong></p>
             <p className="w-fit rounded-md bg-primary/10 px-2 py-1 font-semibold text-foreground ring-1 ring-primary/15">
               Consultar se a empresa é optante pelo Simples Nacional.
@@ -46,7 +46,7 @@ export function GuiaCadastro() {
           </section>
 
           <section className="space-y-2">
-            <h3 className="text-base font-bold">Fornecedores SEM Inscrição Estadual</h3>
+            <h3 className="font-display text-lg font-bold tracking-tight">Fornecedores SEM Inscrição Estadual</h3>
             <p>Contribuinte: <strong>NÃO</strong></p>
             <p>Grupo Tributário: <strong>004</strong></p>
           </section>
