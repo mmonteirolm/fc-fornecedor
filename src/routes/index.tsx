@@ -106,7 +106,7 @@ function Index() {
               <span className="inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] ring-1 ring-primary-foreground/20">
                 Consulta de fornecedores
               </span>
-              <h1 className="mt-5 font-display text-4xl leading-tight sm:text-5xl">
+              <h1 className="mt-5 font-display text-4xl font-bold leading-[1.05] tracking-[-0.02em] sm:text-5xl">
                 Simples Nacional <span className="text-gold">&</span> Inscrição Estadual
               </h1>
               <p className="mt-3 max-w-xl text-sm leading-relaxed text-primary-foreground/75">
@@ -123,7 +123,7 @@ function Index() {
           <div aria-hidden className="absolute inset-y-0 left-0 w-1.5 bg-gold" />
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div className="max-w-xl">
-              <h2 className="font-display text-2xl">Consulta ao Simples Nacional</h2>
+              <h2 className="font-display text-2xl font-bold tracking-tight">Consulta ao Simples Nacional</h2>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 Verifique no site da Receita Federal se o fornecedor é optante pelo Simples Nacional.
               </p>
@@ -141,7 +141,7 @@ function Index() {
         <section>
           <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-xl">
-              <h2 className="font-display text-2xl">Consulta de Inscrição Estadual</h2>
+              <h2 className="font-display text-2xl font-bold tracking-tight">Consulta de Inscrição Estadual</h2>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 Selecione o estado para abrir a consulta oficial. Estados marcados com{" "}
                 <span className="whitespace-nowrap rounded-full border border-destructive/30 bg-destructive/10 px-2 py-0.5 text-xs font-semibold text-destructive">Necessário Certificado</span>{" "}
@@ -166,7 +166,7 @@ function Index() {
                 <div key={r.nome}>
                   <div className="mb-5 flex items-center gap-3">
                     <span aria-hidden className={`h-2.5 w-2.5 rounded-full ${style.dot}`} />
-                    <h3 className="font-display text-xl">{r.nome}</h3>
+                    <h3 className="font-display text-xl font-bold tracking-tight">{r.nome}</h3>
                     <span className="rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
                       {r.estados.length} {r.estados.length === 1 ? "estado" : "estados"}
                     </span>
