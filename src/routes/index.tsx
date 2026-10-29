@@ -5,9 +5,9 @@ import { GuiaCadastro } from "@/components/GuiaCadastro";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Consulta de Fornecedores — Simples Nacional e Inscrição Estadual" },
+      { title: "Ferramenta Consulta Fornecedores" },
       { name: "description", content: "Acesse a consulta ao Simples Nacional e a consulta de inscrição estadual de todos os estados do Brasil." },
-      { property: "og:title", content: "Consulta de Fornecedores — Simples Nacional e IE" },
+      { property: "og:title", content: "Consulta Fornecedores — Simples Nacional e Inscrição Estadual" },
       { property: "og:description", content: "Links oficiais para consultar Simples Nacional e inscrição estadual por estado." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -44,7 +44,7 @@ const REGIOES: { nome: string; estados: UF[] }[] = [
     { uf: "PE", nome: "Pernambuco", url: "https://dfe-portal.svrs.rs.gov.br/Nfe/Ccc", certificado: true },
     { uf: "PI", nome: "Piauí", url: "https://dfe-portal.svrs.rs.gov.br/Nfe/Ccc", certificado: true },
     { uf: "RN", nome: "Rio Grande do Norte", url: "https://uvt.sefaz.rn.gov.br/#/services/consultaContribuinte" },
-    { uf: "SE", nome: "Sergipe", url: "https://security.sefaz.se.gov.br/SIC/sintegra/index.jsp" },
+    { uf: "SE", nome: "Sergipe", url: "https://security.sefaz.se.gov.br/SIC/sintegra/index.jsp", certificado: true },
   ]},
   { nome: "Região Norte", estados: [
     { uf: "AC", nome: "Acre", url: "https://sefazonline.ac.gov.br/sefazonline/app.wmsintegralista" },
@@ -107,7 +107,7 @@ function Index() {
                 Consulta de fornecedores
               </span>
               <h1 className="mt-5 font-display text-4xl font-bold leading-[1.05] tracking-[-0.02em] sm:text-5xl">
-                Simples Nacional <span className="text-gold">&</span> Inscrição Estadual
+                Consulta <span className="text-gold">Fornecedores</span>
               </h1>
               <p className="mt-3 max-w-xl text-sm leading-relaxed text-primary-foreground/75">
                 Consulte optantes do Simples Nacional e a inscrição estadual de fornecedores nos portais oficiais da Receita Federal e das Secretarias da Fazenda.
