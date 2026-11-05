@@ -49,6 +49,7 @@ export function GuiaCadastro() {
             <h3 className="font-display text-lg font-bold tracking-tight">Fornecedores SEM Inscrição Estadual</h3>
             <p>Contribuinte: <strong>NÃO</strong></p>
             <p>Grupo Tributário: <strong>004</strong></p>
+            <p>Inscrição Est: <strong>ISENTO</strong></p>
           </section>
 
           <Separator />
